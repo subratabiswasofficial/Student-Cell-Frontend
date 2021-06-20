@@ -12,57 +12,16 @@ import {
     Typography,
     Divider
 } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/styles';
+import {  useTheme } from '@material-ui/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 // import logo from "../../img/logo.png";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import linkdatas from '../navbar/navlinkData';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import useStyles from '../../styles/Navbar/drawer';
 
-const useStyles = makeStyles((theme) => ({
-    drawerIconContainer: {
-        marginLeft: 'auto',
-        '&:hover': {
-            backgroundColor: 'transparent'
-        }
-    },
-    drawerIcon: {
-        height: '30px',
-        width: '30px',
-        color: '#fff'
-    },
-    drawer: {
-        backgroundColor: '#fff',
-        minWidth: '250px'
-    },
-    logo: {
-        maxWidth: '17em',
-        marginLeft: '-1em'
-    },
-    logoWraper: {
-        backgroundColor: theme.palette.common.darkBlue,
-        padding: '1em 0 1em 0',
-        width: '100%'
-    },
-    accordion: {
-        maxWidth: 300,
-        border: 0
-    },
-    link: {
-        color: theme.palette.common.darkBlue,
-        fontSize: '1em',
-        fontFamily: 'Ubuntu, sans-serif',
-        cursor: 'pointer',
-        marginTop: '0.7em',
-        marginBottom: '0.7em'
-    },
-    heading: {
-        color: theme.palette.common.darkBlue,
-        fontSize: '1.1em',
-        fontFamily: 'Ubuntu, sans-serif'
-    }
-}));
+
 
 const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading }, setOpenAuthModal, setActiveTab, setIsInProfilePage, isInProfilePage }) => {
     const classes = useStyles();
@@ -90,7 +49,7 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                             <Grid item>
                                 {isAuthenticated ? (
                                     <Typography
-                                        style={{ color: '#fff', cursor: 'pointer', fontFamily: 'Ubuntu, sans-serif' }}
+                                        className={classes.text}
                                         variant="body1"
                                         component={Link}
                                         to="/profile/me"
@@ -103,7 +62,7 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                     </Typography>
                                 ) : (
                                     <Typography
-                                        style={{ color: '#fff', cursor: 'pointer', fontFamily: 'Ubuntu, sans-serif' }}
+                                        className={classes.text}
                                         variant="body1"
                                         onClick={() => {
                                             setOpenAuthModal(true);
@@ -117,12 +76,12 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                             </Grid>
                             <Grid item>
                                 {isAuthenticated ? (
-                                    <Typography style={{ color: '#fff', cursor: 'pointer', opacity: 0.85, fontFamily: 'Ubuntu, sans-serif' }} variant="body1">
+                                    <Typography className={classes.text} style={{  opacity: 0.85 }} variant="body1">
                                         Logout
                                     </Typography>
                                 ) : (
                                     <Typography
-                                        style={{ color: '#fff', cursor: 'pointer', fontFamily: 'Ubuntu, sans-serif' }}
+                                        className={classes.text}
                                         variant="body1"
                                         onClick={() => {
                                             setOpenAuthModal(true);
@@ -161,11 +120,7 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails
-                                        style={{
-                                            backgroundColor: '#C4C4C4',
-                                            width: '100%',
-                                            opacity: 0.9
-                                        }}
+                                        className={classes.accordionDetails}
                                     >
                                         <Grid container direction="column">
                                             {linkdatas[0].links.map((linkName) => {
@@ -208,11 +163,7 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails
-                                        style={{
-                                            backgroundColor: '#C4C4C4',
-                                            opacity: 0.9,
-                                            width: '100%'
-                                        }}
+                                        className={classes.accordionDetails}
                                     >
                                         <Grid container direction="column">
                                             {linkdatas[1].links.map((linkName) => {
@@ -255,11 +206,7 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails
-                                        style={{
-                                            backgroundColor: '#C4C4C4',
-                                            opacity: 0.9,
-                                            width: '100%'
-                                        }}
+                                        className={classes.accordionDetails}
                                     >
                                         <Grid container direction="column">
                                             {linkdatas[2].links.map((linkName) => {
@@ -302,11 +249,7 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails
-                                        style={{
-                                            backgroundColor: '#C4C4C4',
-                                            opacity: 0.9,
-                                            width: '100%'
-                                        }}
+                                        className={classes.accordionDetails}
                                     >
                                         <Grid container direction="column">
                                             {linkdatas[3].links.map((linkName) => {
@@ -349,11 +292,7 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         </Typography>
                                     </AccordionSummary>
                                     <AccordionDetails
-                                        style={{
-                                            backgroundColor: '#C4C4C4',
-                                            opacity: 0.9,
-                                            width: '100%'
-                                        }}
+                                        className={classes.accordionDetails}
                                     >
                                         <Grid container direction="column">
                                             {linkdatas[4].links.map((linkName) => {

@@ -2,43 +2,13 @@ import React from 'react';
 import Carousel, { consts } from 'react-elastic-carousel';
 import TestimonialCard from './TestimonialCard';
 import testimonialData from './testmonialData';
-import { useTheme, makeStyles } from '@material-ui/styles';
+import { useTheme } from '@material-ui/styles';
 import { Grid, IconButton, useMediaQuery } from '@material-ui/core';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import useStyles from '../../styles/Landingpage/testimonial';
 
-const useStyles = makeStyles((theme) => ({
-    btn: {
-        color: '#fff',
-        borderColor: '#fff',
-        fontFamily: 'Ubuntu, sans-serif',
-        fontWeight: 500,
-        fontSize: '1.3em'
-    },
-    title: {
-        color: '#fff',
-        fontFamily: 'Ubuntu, sans-serif',
-        fontWeight: 500,
-        fontSize: '2em'
-    },
-    desp: {
-        color: '#fff',
-        fontFamily: 'Ubuntu, sans-serif',
-        fontSize: '1.3em'
-    },
-    btnroot: {
-        borderRadius: 100,
-        width: '2.5em',
-        height: '2.5em',
-        color: '#111',
-        '&:hover': {
-            backgroundColor: 'rgba(1,1,1,0.1)',
-            color: '#000'
-        },
-        padding: 0
-    }
-}));
 
 const Testimonial = () => {
     const classes = useStyles();

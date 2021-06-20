@@ -174,7 +174,8 @@ const Profile = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-
+                {/* Profile section End */}
+                
                 {/* Notifications Section */}
 
                 <Grid
@@ -246,8 +247,12 @@ const Profile = () => {
                             </Typography>
                         </Grid>
                     </Grid>
+                    {/* Notifications Section End */}
                 </Grid>
             </Grid>
+            
+            {/* Table Data Section */}
+
             <Grid container direction="row" justify="space-between" alignItems="center" style={{ padding: '0 1em' }}>
                 <Grid
                     item

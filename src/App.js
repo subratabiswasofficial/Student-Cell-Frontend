@@ -44,7 +44,7 @@ function App() {
                             <Route path="/" exact render={(props) => <LandingPage {...props} openAuthModal={openAuthModal} setOpenAuthModal={setOpenAuthModal} />} />
                             <Route path="/signin" exact render={(props) => <div>Sign In</div>} />
                             <Route path="/signup" exact render={(props) => <div>Sign Up</div>} />
-                            <Route path="/profile/me" exact render={(props) => <Profile {...props} />} />
+                            <PrivateRoute path="/profile/me" exact component={Profile} />
                             <PrivateRoute path="/dashboard" exact component={Dashboard} />
                             <Route render={(props) => <div>404 Not Found</div>} />
                         </Switch>

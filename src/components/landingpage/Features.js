@@ -1,5 +1,5 @@
 import { Button, Grid, Typography, IconButton, useMediaQuery } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import React, { useRef } from 'react';
 import Carousel, { consts } from 'react-elastic-carousel';
 import skills from '../../img/skills_1.jpeg';
@@ -8,6 +8,7 @@ import achivements from '../../img/achievements.png';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import useStyles from '../../styles/Landingpage/features';
 
 const featureData = [
     {
@@ -30,37 +31,7 @@ const featureData = [
     }
 ];
 
-const useStyles = makeStyles((theme) => ({
-    btn: {
-        color: '#fff',
-        borderColor: '#fff',
-        fontFamily: 'Ubuntu, sans-serif',
-        fontWeight: 500,
-        fontSize: '1.3em'
-    },
-    title: {
-        color: '#fff',
-        fontFamily: 'Ubuntu, sans-serif',
-        fontWeight: 500,
-        fontSize: '2em'
-    },
-    desp: {
-        color: '#fff',
-        fontFamily: 'Ubuntu, sans-serif',
-        fontSize: '1.3em'
-    },
-    btnroot: {
-        borderRadius: 100,
-        width: '2.5em',
-        height: '2.5em',
-        color: '#111',
-        '&:hover': {
-            backgroundColor: 'rgba(1,1,1,0.1)',
-            color: '#000'
-        },
-        padding: 0
-    }
-}));
+
 
 const Features = () => {
     const classes = useStyles();

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import { AppBar, Avatar, Grid, Typography, Hidden, useMediaQuery } from '@material-ui/core';
 import logo from '../../img/logo.png';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
@@ -8,35 +8,8 @@ import StudentMenu from './StudentMenu';
 import Drawer from './Drawer';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import useStyles from '../../styles/Navbar/navbar';
 
-const useStyles = makeStyles((theme) => ({
-    appbar: {
-        backgroundColor: theme.palette.common.darkBlue,
-        [theme.breakpoints.down('xs')]: {
-            padding: '0.5em 0 0.5em 0'
-        }
-    },
-    logo: {
-        maxWidth: '20em',
-        [theme.breakpoints.down('xs')]: {
-            maxWidth: '13.5em'
-        }
-    },
-    navlink: {
-        color: theme.palette.common.darkBlue,
-        fontSize: '1em',
-        fontFamily: 'Ubuntu, sans-serif',
-        cursor: 'pointer'
-    },
-    navIcon: {
-        verticalAlign: 'bottom',
-        fontSize: '1.5em',
-        transition: 'all 0.15s linear'
-    },
-    navItem: {
-        marginRight: '2.5em'
-    }
-}));
 
 const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiveTab, isInProfilePage, setIsInProfilePage }) => {
     useEffect(() => {

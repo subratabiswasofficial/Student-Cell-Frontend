@@ -1,62 +1,26 @@
 import React from 'react';
-import { Card, Grid, Typography, useMediaQuery } from '@material-ui/core';
-import { useTheme } from '@material-ui/styles';
-
-// const useStyles = makeStyles((theme) => ({
-//   avatar: {
-//     position: "relative",
-//     "&:before:nth-child(odd)": {
-//       content: '""',
-//       position: "absolute",
-//       width: "30em",
-//       height: "10em",
-//       backgroundColor: "#EC6565",
-//       top: -90,
-//       left: -20,
-//       transition: "all 0.4s ease",
-//     },
-//     "&:before:nth-child(even)": {
-//       content: '""',
-//       position: "absolute",
-//       width: "30em",
-//       height: "10em",
-//       backgroundColor: "#69B2AE",
-//       top: -90,
-//       left: -20,
-//       transition: "all 0.4s ease",
-//     },
-//     Overflow: "visible",
-//   },
-// }));
+import { Card, Grid, Typography } from '@material-ui/core';
+import useStyles from '../../styles/Landingpage/testimonialCard';
 
 const pink = '#EC6565',
     green = '#5FC789',
     sky = '#69B2AE';
 
 const TestimonialCard = ({ cardDetails: { name, img, year, company, jobDesp, department, id } }) => {
-    const theme = useTheme();
-    const matchSm = useMediaQuery(theme.breakpoints.down('sm'));
+    // const theme = useTheme();
+    // const matchSm = useMediaQuery(theme.breakpoints.down('sm'));
+    const classes = useStyles();
     return (
         // <Grid container>
         <Card
-            className={`avatar avatar__${(id % 3) + 1}`}
-            style={{
-                borderBottom: '4px solid #C4C4C4',
-                width: matchSm ? '25em' : '25em',
-                padding: '2em 0 1em 0',
-                overflow: 'hidden',
-                borderTopRightRadius: 13,
-                borderTopLeftRadius: 13,
-                borderBottomLeftRadius: 0,
-                borderBottomRightRadius: 0
-            }}
+            className={`${classes.avatar} ${(id%3 + 1) === 1? classes.avatar1: (id%3 + 1) === 2? classes.avatar2:classes.avatar3} ${classes.card}`}
         >
             <Grid
                 container
                 direction="column"
                 alignItems="center"
                 style={{
-                    width: matchSm ? '25em' : '25em',
+                    width: '25em',
                     overflow: 'visible'
                 }}
             >
