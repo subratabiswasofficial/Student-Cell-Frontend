@@ -1,20 +1,7 @@
 import React, { useState } from 'react';
-import {
-    Grid,
-    IconButton,
-    //   List,
-    //   ListItem,
-    //   ListItemText,
-    SwipeableDrawer,
-    Accordion,
-    AccordionSummary,
-    AccordionDetails,
-    Typography,
-    Divider
-} from '@material-ui/core';
+import { Grid, IconButton, SwipeableDrawer, Accordion, AccordionSummary, AccordionDetails, Typography, Divider } from '@material-ui/core';
 import {  useTheme } from '@material-ui/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-// import logo from "../../img/logo.png";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import linkdatas from '../navbar/navlinkData';
 import { connect } from 'react-redux';

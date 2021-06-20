@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
-import jgecBackground from '../../img/landingpageBackground.jpg';
-import modal from '../../img/modal.png';
-import modalContainer from '../../img/modalContainer.png';
+import jgecBackground from '../../assets/landingpageBackground.jpg';
+import modal from '../../assets/modal.png';
+import modalContainer from '../../assets/modalContainer.png';
 
 const useStyles = makeStyles((theme) => ({
     root: {

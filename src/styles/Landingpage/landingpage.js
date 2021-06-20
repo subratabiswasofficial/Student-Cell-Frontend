@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import jgecBackground from '../../img/landingpageBackground.jpg';
+import jgecBackground from '../../assets/landingpageBackground.jpg';
 
 const useStyles = makeStyles((theme) => ({
     root: {

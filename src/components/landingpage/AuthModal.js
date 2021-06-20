@@ -9,7 +9,7 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { useTheme } from '@material-ui/core/styles';
-import logo from "../../img/logo.png";
+import logo from "../../assets/logo.png";
 import ClearIcon from "@material-ui/icons/Clear";
 import useStyles from "../../styles/Landingpage/authModal";
 

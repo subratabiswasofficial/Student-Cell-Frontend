@@ -1,4 +1,4 @@
-import transparentBackground from '../../img/transparentBackground.png';
+import transparentBackground from '../../assets/transparentBackground.png';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
