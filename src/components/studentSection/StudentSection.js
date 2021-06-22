@@ -1,11 +1,13 @@
-import { Grid, Typography, useMediaQuery, Paper } from '@material-ui/core';
+import { Grid, Typography, useMediaQuery, Paper,Hidden } from '@material-ui/core';
 import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import Achievements from './Achievements';
+import CommonNavigation from './CommonNavigation';
+
 
 const useStyles = makeStyles((theme) => ({
     mainContainer: {
-        paddingTop: '7.45em',
+        paddingTop: '4.99em',
         backgroundColor: 'rgba(232, 232, 232, 1)',
         position: 'relative',
         [theme.breakpoints.down('sm')]: {
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#fff',
         paddingTop: '0.5em',
         position: 'sticky',
-        top: '103.6px',
+        top: '-1px',
         zIndex: 303,
         [theme.breakpoints.down('sm')]: {
             position: 'static'
@@ -43,22 +45,40 @@ const useStyles = makeStyles((theme) => ({
     studentNavbarText: {
         fontFamily: 'Ubuntu, sans-serif',
         fontWeight: 500
+    },
+    sectionItem:{
+         color:theme.palette.common.darkBlue,
+         padding:'1em',
+         marginLeft:'1em',
+         fontWeight:500,
+         fontFamily: 'Ubuntu, sans-serif',
+         cursor:'pointer'
+    },
+    sectionContainer:{
+        backgroundColor:'#fff'
+    },
+    activeSectionItem:{
+        backgroundColor:'rgba(218, 216, 216, 1)',
+        borderTop:`3px solid ${theme.palette.common.orange}`
     }
 }));
 
-const Achivements = () => {
+const Achivements = ({activeSection,setActiveSection}) => {
     const classes = useStyles();
     const theme = useTheme();
     const matchSm = useMediaQuery(theme.breakpoints.down('sm'));
     return (
         <>
             <Grid container style={{}} className={classes.mainContainer} direction="column">
+                <Hidden smDown>
+                  <CommonNavigation activeSection={activeSection} setActiveSection={setActiveSection} />
+                </Hidden>
                 {/* Student Navbar Section */}
                 <Grid
                     item
                     container
                     component={Paper}
-                    elevation={3}
+                    elevation={0}
                     square
                     direction={matchSm ? 'column' : 'row'}
                     justify={matchSm ? 'center' : 'space-around'}
@@ -75,11 +95,11 @@ const Achivements = () => {
                             RESEARCH
                         </Typography>
                     </Grid>
-                    <Grid item className={classes.studentNavbarItem}>
+                    {/* <Grid item className={classes.studentNavbarItem}>
                         <Typography variant="body1" className={classes.studentNavbarText}>
                             SEMESTER
                         </Typography>
-                    </Grid>
+                    </Grid> */}
                     <Grid item className={classes.studentNavbarItem}>
                         <Typography variant="body1" className={classes.studentNavbarText}>
                             MAR DOCUMENENTS

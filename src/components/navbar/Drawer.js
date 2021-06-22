@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useStyles from '../../styles/Navbar/drawer';
 
-const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading }, setOpenAuthModal, setActiveTab, setIsInProfilePage, isInProfilePage }) => {
+const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading }, setOpenAuthModal, setActiveTab, setIsInProfilePage, isInProfilePage,setIsInHomePage }) => {
     const classes = useStyles();
     const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
     const [expanded, setExpanded] = useState(false);
@@ -39,6 +39,7 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         component={Link}
                                         to="/profile/me"
                                         onClick={() => {
+                                            setIsInHomePage(false);
                                             setIsInProfilePage(true);
                                             setOpenDrawer(false);
                                         }}

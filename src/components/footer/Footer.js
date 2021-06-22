@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Footer = ({setActiveSection,setWhiteNavbar}) => {
+const Footer = ({setIsInProfilePage,setIsInHomePage,setActiveSection}) => {
     const classes = useStyles();
     return (
         <>
@@ -62,7 +62,8 @@ const Footer = ({setActiveSection,setWhiteNavbar}) => {
                                         return(
                                             <Grid component={Link} to={`/${navData[0].to}`} className={classes.gridLink} key={link.link} item
                                             onClick={()=>{
-                                                setWhiteNavbar(true);
+                                                setIsInHomePage(false);
+                                                setIsInHomePage(false);
                                                 setActiveSection(1);
                                             }}
                                             >
@@ -79,7 +80,8 @@ const Footer = ({setActiveSection,setWhiteNavbar}) => {
                                         return(
                                             <Grid component={Link} to={`/${navData[1].to}`} className={classes.gridLink} key={link.link} item
                                             onClick={()=>{
-                                                setWhiteNavbar(true);
+                                                setIsInHomePage(false);
+                                                setIsInHomePage(false);
                                                 setActiveSection(2);
                                             }}
                                             >
@@ -95,8 +97,9 @@ const Footer = ({setActiveSection,setWhiteNavbar}) => {
                                     {navData[2].links.map(link=>{
                                         return(
                                             <Grid component={Link} to={`/${navData[2].to}`} className={classes.gridLink} key={link.link} item
-                                            onClick={()=>{
-                                                setWhiteNavbar(true);
+                                           onClick={()=>{
+                                                setIsInHomePage(false);
+                                                setIsInHomePage(false);
                                                 setActiveSection(3);
                                             }}
                                             >
@@ -113,7 +116,8 @@ const Footer = ({setActiveSection,setWhiteNavbar}) => {
                                         return(
                                             <Grid component={Link} to={`/${navData[3].to}`} className={classes.gridLink} key={link.link} item
                                             onClick={()=>{
-                                                setWhiteNavbar(true);
+                                                setIsInHomePage(false);
+                                                setIsInHomePage(false);
                                                 setActiveSection(4);
                                             }}
                                             >
@@ -130,7 +134,8 @@ const Footer = ({setActiveSection,setWhiteNavbar}) => {
                                         return(
                                             <Grid component={Link} to={`/${navData[4].to}`} className={classes.gridLink} key={link.link} item
                                             onClick={()=>{
-                                                setWhiteNavbar(true);
+                                                setIsInHomePage(false);
+                                                setIsInHomePage(false);
                                                 setActiveSection(5);
                                             }}
                                             >

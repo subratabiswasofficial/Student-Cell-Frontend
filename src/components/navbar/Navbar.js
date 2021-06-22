@@ -11,38 +11,21 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useStyles from '../../styles/Navbar/navbar';
 
-const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiveTab, isInProfilePage, setIsInProfilePage,setWhiteNavbar,whiteNavbar,setActiveSection,activeSection }) => {
+const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiveTab, isInProfilePage, setIsInProfilePage,isInHomePage,setIsInHomePage,setActiveSection,activeSection }) => {
     
 
     
 
     // active Section settings
     useEffect(() => {
-        if (window.location.pathname === '/profile/me') {
+        if (window.location.pathname === '/') {
+            setIsInHomePage(true);
+            setIsInProfilePage(false);
+        } if (window.location.pathname === '/profile/me'){
             setIsInProfilePage(true);
-        } else if (window.location.pathname === '/studentSection') {
-            setActiveSection(1);
-            setWhiteNavbar(true);
-            setIsInProfilePage(false);
-        } else if (window.location.pathname === '/clubSection') {
-            setActiveSection(2);
-            setWhiteNavbar(true);
-            setIsInProfilePage(false);
-        } else if (window.location.pathname === '/placementSection') {
-            setActiveSection(3);
-            setWhiteNavbar(true);
-            setIsInProfilePage(false);
-        } else if (window.location.pathname === '/hostelSection') {
-            setActiveSection(4);
-            setWhiteNavbar(true);
-            setIsInProfilePage(false);
-        } else if (window.location.pathname === '/skillsSection') {
-            setActiveSection(5);
-            setWhiteNavbar(true);
-            setIsInProfilePage(false);
-        } else {
-            setActiveSection(null);
-            setWhiteNavbar(false);
+            setIsInHomePage(false);
+        }else{
+            setIsInHomePage(false);
             setIsInProfilePage(false);
         }
     }, []);
@@ -70,16 +53,15 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
     };
     return (
         <>
-            <AppBar elevation={activeSection !== null ? 3 : 0} position={matchSm ? 'fixed' : activeSection !== null ? 'fixed' : 'absolute'} style={{ backgroundColor: 'transparent' }}>
+            <AppBar elevation={0} position={matchSm ? 'fixed' : 'absolute'} style={{ backgroundColor: 'transparent' }}>
                 <Grid container alignItems="center" justify="space-between" className={classes.appbar}>
                     <Grid
                         item
                         component={Link}
                         to="/"
                         onClick={() => {
-                            setWhiteNavbar(false);
-                            setActiveSection(null);
                             setIsInProfilePage(false);
+                            setIsInHomePage(true);
                         }}
                     >
                         <img className={classes.logo} src={logo} alt="Jalpaigudi Government Engineering College" />
@@ -90,7 +72,7 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                 <Grid item style={{ marginRight: '1em' }}>
                                     {isAuthenticated ? (
                                         !isInProfilePage ? (
-                                            <Typography component={Link} to="/profile/me" onClick={() => setIsInProfilePage(true)} variant="body1" style={{ cursor: 'pointer', color: '#fff' }}>
+                                            <Typography component={Link} to="/profile/me" onClick={() => {setIsInProfilePage(true);setIsInHomePage(false)}} variant="body1" style={{ cursor: 'pointer', color: '#fff' }}>
                                                 PROFILE
                                             </Typography>
                                         ) : (
@@ -99,7 +81,7 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                                 to="/"
                                                 onClick={() => {
                                                     setIsInProfilePage(false);
-                                                    setWhiteNavbar(false);
+                                                    setIsInHomePage(true);
                                                 }}
                                                 variant="body1"
                                                 style={{ cursor: 'pointer', color: '#fff', fontSize: '1.2em' }}
@@ -129,6 +111,8 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                             <Drawer
                                 isInProfilePage={isInProfilePage}
                                 setIsInProfilePage={setIsInProfilePage}
+                                isInHomePage={isInHomePage}
+                                setIsInHomePage={setIsInHomePage}
                                 setActiveTab={setActiveTab}
                                 setOpenAuthModal={setOpenAuthModal}
                                 openDrawer={openDrawer}
@@ -137,11 +121,11 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                         )}
                     </Grid>
                 </Grid>
-                {!isInProfilePage && (
+                {isInHomePage && (
                     <Hidden smDown>
-                        <AppBar elevation={0} position="static" style={{ backgroundColor: whiteNavbar ? 'white' : 'transparent', zIndex: 303 }}>
+                        <AppBar elevation={0} position="static" style={{ backgroundColor: 'transparent', zIndex: 303 }}>
                             <Grid container style={{}} justify="flex-end" alignItems="center">
-                                <Grid item className={classes.navItem} style={{ borderTop: activeSection === 1 ? `4px solid ${theme.palette.common.orange}` : undefined }}>
+                                <Grid item className={classes.navItem}>
                                     <Typography
                                         className={classes.navlink}
                                         variant="body2"
@@ -158,7 +142,7 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                         />
                                     </Typography>
                                 </Grid>
-                                <Grid item className={classes.navItem} style={{ borderTop: activeSection === 2 ? `4px solid ${theme.palette.common.orange}` : undefined }}>
+                                <Grid item className={classes.navItem} >
                                     <Typography
                                         className={classes.navlink}
                                         variant="body2"
@@ -175,7 +159,7 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                         />
                                     </Typography>
                                 </Grid>
-                                <Grid item className={classes.navItem} style={{ borderTop: activeSection === 3 ? `4px solid ${theme.palette.common.orange}` : undefined }}>
+                                <Grid item className={classes.navItem} >
                                     <Typography
                                         className={classes.navlink}
                                         variant="body2"
@@ -192,7 +176,7 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                         />
                                     </Typography>
                                 </Grid>
-                                <Grid item className={classes.navItem} style={{ borderTop: activeSection === 4 ? `4px solid ${theme.palette.common.orange}` : undefined }}>
+                                <Grid item className={classes.navItem} >
                                     <Typography
                                         className={classes.navlink}
                                         variant="body2"
@@ -213,7 +197,7 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                     item
                                     style={{
                                         marginRight: '1em',
-                                        borderTop: activeSection === 5 ? `4px solid ${theme.palette.common.orange}` : undefined
+                                        
                                     }}
                                     className={classes.navItem}
                                 >
@@ -241,12 +225,13 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
 
             <StudentMenu
                 anchorEl={anchorEl}
-                setWhiteNavbar={setWhiteNavbar}
                 anchorId={anchorId}
-                setActiveSection={setActiveSection}
                 handleClose={handleClose}
                 activeLink={activeLink}
                 setActiveLink={setActiveLink}
+                setActiveSection={setActiveSection}
+                setIsInProfilePage={setIsInProfilePage}
+                setIsInHomePage={setIsInHomePage}
             />
         </>
     );

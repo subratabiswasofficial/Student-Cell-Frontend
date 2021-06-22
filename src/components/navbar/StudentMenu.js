@@ -6,7 +6,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import useStyles from '../../styles/Navbar/studentMenu';
 import { Link } from 'react-router-dom';
 
-const StudentMenu = ({ anchorEl, handleClose, anchorId, activeLink, setActiveLink, setActiveSection, setWhiteNavbar }) => {
+const StudentMenu = ({ anchorEl, handleClose, anchorId, activeLink, setActiveLink,setActiveSection,setIsInProfilePage,setIsInHomePage}) => {
     const classes = useStyles();
     const data = navlinkdatas.filter((data) => data.id === anchorId);
     useEffect(() => {
@@ -63,9 +63,10 @@ const StudentMenu = ({ anchorEl, handleClose, anchorId, activeLink, setActiveLin
                                                 component={Link}
                                                 to={`/${data[0].to}`}
                                                 onClick={() => {
-                                                    setWhiteNavbar(true);
-                                                    setActiveSection(data[0].navId);
                                                     handleClose();
+                                                    setActiveSection(data[0].navId);
+                                                    setIsInHomePage(false);
+                                                    setIsInHomePage(false);
                                                 }}
                                             >
                                                 <Typography

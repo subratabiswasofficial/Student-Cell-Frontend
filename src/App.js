@@ -20,13 +20,29 @@ import Footer from './components/footer/Footer';
 
 function App() {
     const [isInProfilePage, setIsInProfilePage] = useState(false);
-    const [whiteNavbar, setWhiteNavbar] = useState(false);
-    const [activeSection, setActiveSection] = useState(null);
+    const [isInHomePage, setIsInHomePage] = useState(false);
+    const [activeSection,setActiveSection] = useState(null);
     useEffect(() => {
         if (window.location.pathname === '/profile/me') {
             setIsInProfilePage(true);
-        } else {
+            setIsInHomePage(false);
+        }else if (window.location.pathname === '/') {
             setIsInProfilePage(false);
+            setIsInHomePage(true);
+        }else{
+            if(window.location.pathname === '/studentSection'){
+                setActiveSection(1);
+            }else if(window.location.pathname === '/clubSection'){
+                setActiveSection(2);
+            }else if(window.location.pathname === '/placementSection'){
+                setActiveSection(3);
+            }else if(window.location.pathname === '/hostelSection'){
+                setActiveSection(4);
+            }else if(window.location.pathname === '/skillsSection'){
+                setActiveSection(5);
+            }
+            setIsInProfilePage(false);
+            setIsInHomePage(false);
         }
         store.dispatch(loadUser());
     }, []);
@@ -44,10 +60,10 @@ function App() {
                             setActiveTab={setActiveTab}
                             setOpenAuthModal={setOpenAuthModal}
                             openAuthModal={openAuthModal}
-                            setWhiteNavbar={setWhiteNavbar}
-                            whiteNavbar={whiteNavbar}
-                            setActiveSection={setActiveSection}
+                            isInHomePage={isInHomePage}
+                            setIsInHomePage={setIsInHomePage}
                             activeSection={activeSection}
+                            setActiveSection={setActiveSection}
                         />
                         <Switch>
                             <Route path="/" exact render={(props) => <LandingPage {...props} openAuthModal={openAuthModal} setOpenAuthModal={setOpenAuthModal} />} />
@@ -55,11 +71,13 @@ function App() {
                             <Route path="/signup" exact render={(props) => <div>Sign Up</div>} />
                             <PrivateRoute path="/profile/me" exact component={Profile} />
                             <PrivateRoute path="/dashboard" exact component={Dashboard} />
-                            <Route path="/studentSection" exact render={(props) => <StudentSection {...props} />} />
+                            <Route path="/studentSection" exact render={(props) => <StudentSection activeSection={activeSection}
+                            setActiveSection={setActiveSection} {...props} />} />
                             <Route render={(props) => <div>404 Not Found</div>} />
                         </Switch>
                         <Footer
-                          setWhiteNavbar={setWhiteNavbar}
+                          setIsInHomePage={setIsInHomePage}
+                          setIsInProfilePage={setIsInProfilePage}
                           setActiveSection={setActiveSection}
                         />
                     </Router>
