@@ -5,7 +5,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
 import { FormControl } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import { makeStyles,useTheme } from '@material-ui/styles';
+import { makeStyles } from '@material-ui/styles';
 import AchievementCard from './AchievementCard';
 import { Typography, Tooltip } from '@material-ui/core';
 import AddAchievementModal from './AddAchievementModal';
@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Achievements = ({studentSection:{achievements,loading},loadAchievement}) => {
     const classes = useStyles();
-    const theme = useTheme();
+    // const theme = useTheme();
     const [achivementFilter, setAchivementFilter] = useState('my-achievements');
     const [addAchievementModalOpen, setAddAchievementModal] = useState(false);
 
@@ -157,12 +157,12 @@ const Achievements = ({studentSection:{achievements,loading},loadAchievement}) =
                 </Grid>
                 {/* Add Achivements and Filter Section End */}
 
-                {!loading && achievements && achievements.length !== 0 ? 
+                {!loading && achievements? 
                 <>
                 <Grid item container justify={customMatchSm ? 'center' : 'space-between'} 
                 style={{
-                     height:'100vh',overflowY:'scroll', borderTop:`2px solid ${theme.palette.common.darkBlue}`,
-                     marginRight:'2em' 
+                    //  height:'100vh',overflowY:'scroll', borderTop:`2px solid ${theme.palette.common.darkBlue}`,
+                    marginBottom:'10em'
                 }}
                 >
                     {achievements.map((achievement, ind) => {

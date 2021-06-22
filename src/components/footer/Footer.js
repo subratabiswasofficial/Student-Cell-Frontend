@@ -3,14 +3,15 @@ import { makeStyles } from '@material-ui/styles';
 import { Grid,Typography } from '@material-ui/core';
 import collegeLogo from '../../assets/collegeLogo.png';
 import navData from '../navbar/navlinkData';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     
     footer: {
         backgroundColor: theme.palette.common.darkBlue,
         width: "100%",
-        position: "relative",
-        zIndex: 1302,
+        // position: "relative",
+        // zIndex: 1302,
         padding:'2em 0'
     },
     logo:{
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Footer = () => {
+const Footer = ({setActiveSection,setWhiteNavbar}) => {
     const classes = useStyles();
     return (
         <>
@@ -59,7 +60,12 @@ const Footer = () => {
                                 <Grid container direction="column" spacing={2}>
                                     {navData[0].links.map(link=>{
                                         return(
-                                            <Grid className={classes.gridLink} key={link.link} item>
+                                            <Grid component={Link} to={`/${navData[0].to}`} className={classes.gridLink} key={link.link} item
+                                            onClick={()=>{
+                                                setWhiteNavbar(true);
+                                                setActiveSection(1);
+                                            }}
+                                            >
                                                  {link.link}
                                             </Grid>
                                         )
@@ -71,7 +77,12 @@ const Footer = () => {
                             <Grid container direction="column" spacing={2}>
                                     {navData[1].links.map(link=>{
                                         return(
-                                            <Grid className={classes.gridLink} key={link.link} item>
+                                            <Grid component={Link} to={`/${navData[1].to}`} className={classes.gridLink} key={link.link} item
+                                            onClick={()=>{
+                                                setWhiteNavbar(true);
+                                                setActiveSection(2);
+                                            }}
+                                            >
                                                  {link.link}
                                             </Grid>
                                         )
@@ -83,7 +94,12 @@ const Footer = () => {
                             <Grid container direction="column" spacing={2}>
                                     {navData[2].links.map(link=>{
                                         return(
-                                            <Grid className={classes.gridLink} key={link.link} item>
+                                            <Grid component={Link} to={`/${navData[2].to}`} className={classes.gridLink} key={link.link} item
+                                            onClick={()=>{
+                                                setWhiteNavbar(true);
+                                                setActiveSection(3);
+                                            }}
+                                            >
                                                  {link.link}
                                             </Grid>
                                         )
@@ -95,7 +111,12 @@ const Footer = () => {
                             <Grid container direction="column" spacing={2}>
                                     {navData[3].links.map(link=>{
                                         return(
-                                            <Grid className={classes.gridLink} key={link.link} item>
+                                            <Grid component={Link} to={`/${navData[3].to}`} className={classes.gridLink} key={link.link} item
+                                            onClick={()=>{
+                                                setWhiteNavbar(true);
+                                                setActiveSection(4);
+                                            }}
+                                            >
                                                  {link.link}
                                             </Grid>
                                         )
@@ -107,7 +128,12 @@ const Footer = () => {
                             <Grid container direction="column" spacing={2}>
                                     {navData[4].links.map(link=>{
                                         return(
-                                            <Grid className={classes.gridLink} key={link.link} item>
+                                            <Grid component={Link} to={`/${navData[4].to}`} className={classes.gridLink} key={link.link} item
+                                            onClick={()=>{
+                                                setWhiteNavbar(true);
+                                                setActiveSection(5);
+                                            }}
+                                            >
                                                  {link.link}
                                             </Grid>
                                         )

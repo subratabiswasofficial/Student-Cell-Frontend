@@ -1,7 +1,7 @@
 import { LOAD_ACHIEVEMENTS,DELETE_ACHIEVEMENT,ADD_ACHIEVEMENT } from "../actions/types";
 
 const initialState = {
-    achievements:[],
+    achievements:null,
     loading:true
 };
 

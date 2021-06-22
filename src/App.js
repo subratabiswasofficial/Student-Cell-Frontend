@@ -20,6 +20,8 @@ import Footer from './components/footer/Footer';
 
 function App() {
     const [isInProfilePage, setIsInProfilePage] = useState(false);
+    const [whiteNavbar, setWhiteNavbar] = useState(false);
+    const [activeSection, setActiveSection] = useState(null);
     useEffect(() => {
         if (window.location.pathname === '/profile/me') {
             setIsInProfilePage(true);
@@ -42,6 +44,10 @@ function App() {
                             setActiveTab={setActiveTab}
                             setOpenAuthModal={setOpenAuthModal}
                             openAuthModal={openAuthModal}
+                            setWhiteNavbar={setWhiteNavbar}
+                            whiteNavbar={whiteNavbar}
+                            setActiveSection={setActiveSection}
+                            activeSection={activeSection}
                         />
                         <Switch>
                             <Route path="/" exact render={(props) => <LandingPage {...props} openAuthModal={openAuthModal} setOpenAuthModal={setOpenAuthModal} />} />
@@ -52,7 +58,10 @@ function App() {
                             <Route path="/studentSection" exact render={(props) => <StudentSection {...props} />} />
                             <Route render={(props) => <div>404 Not Found</div>} />
                         </Switch>
-                        <Footer />
+                        <Footer
+                          setWhiteNavbar={setWhiteNavbar}
+                          setActiveSection={setActiveSection}
+                        />
                     </Router>
                 </Provider>
                 <AuthModal activeTab={activeTab} setActiveTab={setActiveTab} setOpenAuthModal={setOpenAuthModal} openAuthModal={openAuthModal} />

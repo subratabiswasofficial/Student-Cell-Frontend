@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { AppBar, Avatar, Grid, Typography, Hidden, useMediaQuery } from '@material-ui/core';
@@ -10,9 +11,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useStyles from '../../styles/Navbar/navbar';
 
-const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiveTab, isInProfilePage, setIsInProfilePage }) => {
-    const [whiteNavbar, setWhiteNavbar] = useState(false);
-    const [activeSection, setActiveSection] = useState(null);
+const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiveTab, isInProfilePage, setIsInProfilePage,setWhiteNavbar,whiteNavbar,setActiveSection,activeSection }) => {
+    
+
+    
 
     // active Section settings
     useEffect(() => {
@@ -43,7 +45,7 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
             setWhiteNavbar(false);
             setIsInProfilePage(false);
         }
-    }, [setIsInProfilePage, isInProfilePage]);
+    }, []);
 
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
