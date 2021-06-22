@@ -10,15 +10,41 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import useStyles from '../../styles/Navbar/navbar';
 
-
 const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiveTab, isInProfilePage, setIsInProfilePage }) => {
+    const [whiteNavbar, setWhiteNavbar] = useState(false);
+    const [activeSection, setActiveSection] = useState(null);
+
+    // active Section settings
     useEffect(() => {
         if (window.location.pathname === '/profile/me') {
             setIsInProfilePage(true);
+        } else if (window.location.pathname === '/studentSection') {
+            setActiveSection(1);
+            setWhiteNavbar(true);
+            setIsInProfilePage(false);
+        } else if (window.location.pathname === '/clubSection') {
+            setActiveSection(2);
+            setWhiteNavbar(true);
+            setIsInProfilePage(false);
+        } else if (window.location.pathname === '/placementSection') {
+            setActiveSection(3);
+            setWhiteNavbar(true);
+            setIsInProfilePage(false);
+        } else if (window.location.pathname === '/hostelSection') {
+            setActiveSection(4);
+            setWhiteNavbar(true);
+            setIsInProfilePage(false);
+        } else if (window.location.pathname === '/skillsSection') {
+            setActiveSection(5);
+            setWhiteNavbar(true);
+            setIsInProfilePage(false);
         } else {
+            setActiveSection(null);
+            setWhiteNavbar(false);
             setIsInProfilePage(false);
         }
     }, [setIsInProfilePage, isInProfilePage]);
+
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -42,9 +68,18 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
     };
     return (
         <>
-            <AppBar elevation={0} position={matchSm ? 'fixed' : 'absolute'} style={{ backgroundColor: 'transparent' }}>
+            <AppBar elevation={activeSection !== null ? 3 : 0} position={matchSm ? 'fixed' : activeSection !== null ? 'fixed' : 'absolute'} style={{ backgroundColor: 'transparent' }}>
                 <Grid container alignItems="center" justify="space-between" className={classes.appbar}>
-                    <Grid item>
+                    <Grid
+                        item
+                        component={Link}
+                        to="/"
+                        onClick={() => {
+                            setWhiteNavbar(false);
+                            setActiveSection(null);
+                            setIsInProfilePage(false);
+                        }}
+                    >
                         <img className={classes.logo} src={logo} alt="Jalpaigudi Government Engineering College" />
                     </Grid>
                     <Grid item>
@@ -60,7 +95,10 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                             <Typography
                                                 component={Link}
                                                 to="/"
-                                                onClick={() => setIsInProfilePage(false)}
+                                                onClick={() => {
+                                                    setIsInProfilePage(false);
+                                                    setWhiteNavbar(false);
+                                                }}
                                                 variant="body1"
                                                 style={{ cursor: 'pointer', color: '#fff', fontSize: '1.2em' }}
                                             >
@@ -99,9 +137,9 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                 </Grid>
                 {!isInProfilePage && (
                     <Hidden smDown>
-                        <AppBar elevation={0} position="static" style={{ backgroundColor: 'transparent' }}>
-                            <Grid container style={{ marginTop: '0.5em' }} justify="flex-end" alignItems="center">
-                                <Grid item className={classes.navItem}>
+                        <AppBar elevation={0} position="static" style={{ backgroundColor: whiteNavbar ? 'white' : 'transparent', zIndex: 303 }}>
+                            <Grid container style={{}} justify="flex-end" alignItems="center">
+                                <Grid item className={classes.navItem} style={{ borderTop: activeSection === 1 ? `4px solid ${theme.palette.common.orange}` : undefined }}>
                                     <Typography
                                         className={classes.navlink}
                                         variant="body2"
@@ -118,7 +156,7 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                         />
                                     </Typography>
                                 </Grid>
-                                <Grid item className={classes.navItem}>
+                                <Grid item className={classes.navItem} style={{ borderTop: activeSection === 2 ? `4px solid ${theme.palette.common.orange}` : undefined }}>
                                     <Typography
                                         className={classes.navlink}
                                         variant="body2"
@@ -135,7 +173,7 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                         />
                                     </Typography>
                                 </Grid>
-                                <Grid item className={classes.navItem}>
+                                <Grid item className={classes.navItem} style={{ borderTop: activeSection === 3 ? `4px solid ${theme.palette.common.orange}` : undefined }}>
                                     <Typography
                                         className={classes.navlink}
                                         variant="body2"
@@ -152,7 +190,7 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                         />
                                     </Typography>
                                 </Grid>
-                                <Grid item className={classes.navItem}>
+                                <Grid item className={classes.navItem} style={{ borderTop: activeSection === 4 ? `4px solid ${theme.palette.common.orange}` : undefined }}>
                                     <Typography
                                         className={classes.navlink}
                                         variant="body2"
@@ -172,7 +210,8 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                                 <Grid
                                     item
                                     style={{
-                                        marginRight: '1em'
+                                        marginRight: '1em',
+                                        borderTop: activeSection === 5 ? `4px solid ${theme.palette.common.orange}` : undefined
                                     }}
                                     className={classes.navItem}
                                 >
@@ -198,7 +237,15 @@ const Navbar = ({ setOpenAuthModal, auth: { isAuthenticated, loading }, setActiv
                 )}
             </AppBar>
 
-            <StudentMenu anchorEl={anchorEl} anchorId={anchorId} handleClose={handleClose} activeLink={activeLink} setActiveLink={setActiveLink} />
+            <StudentMenu
+                anchorEl={anchorEl}
+                setWhiteNavbar={setWhiteNavbar}
+                anchorId={anchorId}
+                setActiveSection={setActiveSection}
+                handleClose={handleClose}
+                activeLink={activeLink}
+                setActiveLink={setActiveLink}
+            />
         </>
     );
 };

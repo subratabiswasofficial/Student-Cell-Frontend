@@ -17,8 +17,6 @@ const useStylesBootstrap = makeStyles((theme) => ({
     }
 }));
 
-
-
 const NotificationButton = () => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
@@ -37,7 +35,6 @@ const NotificationButton = () => {
                     aria-haspopup={Boolean(anchorEl) ? 'true' : undefined}
                     onClick={(e) => handleClick(e)}
                     style={{
-                        
                         opacity: !Boolean(anchorEl) ? 1 : 0
                     }}
                     component={Paper}

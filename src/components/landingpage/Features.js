@@ -31,8 +31,6 @@ const featureData = [
     }
 ];
 
-
-
 const Features = () => {
     const classes = useStyles();
     const myArrow = ({ type, onClick, isEdge }) => {

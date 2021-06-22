@@ -4,9 +4,9 @@ import { Grid, Typography, Menu, IconButton, Avatar } from '@material-ui/core';
 import navlinkdatas from './navlinkData';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import useStyles from '../../styles/Navbar/studentMenu';
+import { Link } from 'react-router-dom';
 
-
-const StudentMenu = ({ anchorEl, handleClose, anchorId, activeLink, setActiveLink }) => {
+const StudentMenu = ({ anchorEl, handleClose, anchorId, activeLink, setActiveLink, setActiveSection, setWhiteNavbar }) => {
     const classes = useStyles();
     const data = navlinkdatas.filter((data) => data.id === anchorId);
     useEffect(() => {
@@ -59,6 +59,13 @@ const StudentMenu = ({ anchorEl, handleClose, anchorId, activeLink, setActiveLin
                                                 style={{
                                                     paddingTop: '0.5em',
                                                     paddingBottom: '0.5em'
+                                                }}
+                                                component={Link}
+                                                to={`/${data[0].to}`}
+                                                onClick={() => {
+                                                    setWhiteNavbar(true);
+                                                    setActiveSection(data[0].navId);
+                                                    handleClose();
                                                 }}
                                             >
                                                 <Typography

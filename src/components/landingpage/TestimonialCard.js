@@ -12,9 +12,7 @@ const TestimonialCard = ({ cardDetails: { name, img, year, company, jobDesp, dep
     const classes = useStyles();
     return (
         // <Grid container>
-        <Card
-            className={`${classes.avatar} ${(id%3 + 1) === 1? classes.avatar1: (id%3 + 1) === 2? classes.avatar2:classes.avatar3} ${classes.card}`}
-        >
+        <Card className={`${classes.avatar} ${(id % 3) + 1 === 1 ? classes.avatar1 : (id % 3) + 1 === 2 ? classes.avatar2 : classes.avatar3} ${classes.card}`}>
             <Grid
                 container
                 direction="column"

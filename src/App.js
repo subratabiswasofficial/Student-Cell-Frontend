@@ -15,6 +15,8 @@ import LandingPage from './components/landingpage/LandingPage';
 import NotificationButton from './components/landingpage/NotificationButton';
 import AuthModal from './components/landingpage/AuthModal';
 import Profile from './components/profile/Profile';
+import StudentSection from './components/studentSection/StudentSection';
+
 function App() {
     const [isInProfilePage, setIsInProfilePage] = useState(false);
     useEffect(() => {
@@ -46,6 +48,7 @@ function App() {
                             <Route path="/signup" exact render={(props) => <div>Sign Up</div>} />
                             <PrivateRoute path="/profile/me" exact component={Profile} />
                             <PrivateRoute path="/dashboard" exact component={Dashboard} />
+                            <Route path="/studentSection" exact render={(props) => <StudentSection {...props} />} />
                             <Route render={(props) => <div>404 Not Found</div>} />
                         </Switch>
                     </Router>

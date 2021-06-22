@@ -9,7 +9,6 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import useStyles from '../../styles/Landingpage/testimonial';
 
-
 const Testimonial = () => {
     const classes = useStyles();
     const theme = useTheme();

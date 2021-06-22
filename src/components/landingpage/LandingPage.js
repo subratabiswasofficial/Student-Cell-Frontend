@@ -7,8 +7,6 @@ import Features from './Features';
 import Testimonial from './Testimonial';
 import useStyles from '../../styles/Landingpage/landingpage';
 
-
-
 const LandingPage = ({ setOpenAuthModal, openAuthModal }) => {
     const classes = useStyles();
     const theme = useTheme();
