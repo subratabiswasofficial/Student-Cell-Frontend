@@ -15,12 +15,12 @@ const studentSectionReducer = (state = initialState,action)=>{
             };
         case ADD_ACHIEVEMENT:
             return {
-                achievements: [{...playload,id:state.length + 1},...state.achievements],
+                achievements: [{...playload,id:state.achievements.length + 1},...state.achievements],
                 loading:false
             };
             case DELETE_ACHIEVEMENT:
                 return {
-                    achievements: state.achievements.filter((achievement,ind)=>ind!==playload),
+                    achievements: state.achievements.filter((achievement)=>achievement.id!==playload),
                     loading:false
                 };
         default :

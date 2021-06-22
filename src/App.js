@@ -16,6 +16,7 @@ import NotificationButton from './components/landingpage/NotificationButton';
 import AuthModal from './components/landingpage/AuthModal';
 import Profile from './components/profile/Profile';
 import StudentSection from './components/studentSection/StudentSection';
+import Footer from './components/footer/Footer';
 
 function App() {
     const [isInProfilePage, setIsInProfilePage] = useState(false);
@@ -51,6 +52,7 @@ function App() {
                             <Route path="/studentSection" exact render={(props) => <StudentSection {...props} />} />
                             <Route render={(props) => <div>404 Not Found</div>} />
                         </Switch>
+                        <Footer />
                     </Router>
                 </Provider>
                 <AuthModal activeTab={activeTab} setActiveTab={setActiveTab} setOpenAuthModal={setOpenAuthModal} openAuthModal={openAuthModal} />

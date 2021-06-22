@@ -3,6 +3,8 @@ import { Dialog, Grid, Slide, DialogContent, InputBase, Paper, Button } from '@m
 import React, { useState } from 'react';
 import { makeStyles,useTheme } from '@material-ui/styles';
 import InsertPhotoIcon from '@material-ui/icons/InsertPhoto';
+import { addAchievement } from '../../actions/studentSection';
+import { connect } from 'react-redux';
 
 // const useStylesBootstrap = makeStyles((theme) => ({
 //     arrow: {
@@ -46,7 +48,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const AddAchievementModal = ({ setAddAchievementModal, addAchievementModalOpen }) => {
+const AddAchievementModal = ({ setAddAchievementModal, addAchievementModalOpen,addAchievement }) => {
     const classes = useStyles();
     const theme = useTheme();
     const [file, setFile] = useState(null);
@@ -127,7 +129,15 @@ const AddAchievementModal = ({ setAddAchievementModal, addAchievementModalOpen }
                                     }}>
                                         Discard
                                     </Button>
-                                    <Button variant="contained" color="primary">
+                                    <Button variant="contained" color="primary" onClick={()=>{
+                                        addAchievement({title:state.title,description:state.description,imgSrc:file});
+                                        handleClose();
+                                        setState({
+                                            title:"",
+                                            description:''
+                                        });
+                                        setFile(null);
+                                    }}>
                                         post
                                     </Button>
                             </Grid>
@@ -139,4 +149,4 @@ const AddAchievementModal = ({ setAddAchievementModal, addAchievementModalOpen }
     );
 };
 
-export default AddAchievementModal;
+export default connect(null,{addAchievement})(AddAchievementModal);

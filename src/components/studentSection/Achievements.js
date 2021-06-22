@@ -5,7 +5,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
 import { FormControl } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles,useTheme } from '@material-ui/styles';
 import AchievementCard from './AchievementCard';
 import { Typography, Tooltip } from '@material-ui/core';
 import AddAchievementModal from './AddAchievementModal';
@@ -27,7 +27,7 @@ const useStylesBootstrap = makeStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
     // itemContainer: {
-    //     padding: '0  5em'
+    //    background:'transparent'
     // },
     achievementsMainContainer: {
         paddingLeft: '5em',
@@ -47,7 +47,9 @@ const useStyles = makeStyles((theme) => ({
         verticalAlign: 'bottom'
     },
     inputContainer: {
-        padding: '0.7em 1em 0.7em 1.5em'
+        padding: '0.7em 1em 0.7em 1.5em',
+        marginBottom:'2em',
+        
     },
     menuText: {
         fontFamily: 'Ubuntu, sans-serif',
@@ -73,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Achievements = ({studentSection:{achievements,loading},loadAchievement}) => {
     const classes = useStyles();
+    const theme = useTheme();
     const [achivementFilter, setAchivementFilter] = useState('my-achievements');
     const [addAchievementModalOpen, setAddAchievementModal] = useState(false);
 
@@ -154,9 +157,14 @@ const Achievements = ({studentSection:{achievements,loading},loadAchievement}) =
                 </Grid>
                 {/* Add Achivements and Filter Section End */}
 
-                {!loading && achievements.length !== 0 ? 
+                {!loading && achievements && achievements.length !== 0 ? 
                 <>
-                <Grid item container justify={customMatchSm ? 'center' : 'space-between'}>
+                <Grid item container justify={customMatchSm ? 'center' : 'space-between'} 
+                style={{
+                     height:'100vh',overflowY:'scroll', borderTop:`2px solid ${theme.palette.common.darkBlue}`,
+                     marginRight:'2em' 
+                }}
+                >
                     {achievements.map((achievement, ind) => {
                         return (
                             <Grid item key={ind}>

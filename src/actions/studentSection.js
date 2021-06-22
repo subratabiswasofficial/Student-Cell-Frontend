@@ -14,8 +14,8 @@ export const loadAchievement = ()=>{
 
 //Add Achievement
 
-export const addAchievement = ({formData})=>{
-    return async (dispatch)=>{
+export const addAchievement = (formData)=>{
+    return (dispatch)=>{
         dispatch({
             type: ADD_ACHIEVEMENT,
             playload: formData,
@@ -25,11 +25,11 @@ export const addAchievement = ({formData})=>{
 
 //Add Achievement
 
-export const deleteAchievement = ({ind})=>{
+export const deleteAchievement = (id)=>{
     return async (dispatch)=>{
         dispatch({
             type: DELETE_ACHIEVEMENT,
-            playload: ind,
+            playload: id,
           });
     }
 }

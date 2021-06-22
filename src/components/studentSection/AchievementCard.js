@@ -3,6 +3,8 @@ import React from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/styles';
+import { deleteAchievement } from '../../actions/studentSection';
+import { connect } from 'react-redux';
 
 const useStylesBootstrap = makeStyles((theme) => ({
     arrow: {
@@ -53,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AchievementCard = ({ achievementData }) => {
+const AchievementCard = ({ achievementData,deleteAchievement }) => {
     const classes = useStyles();
     return (
         <>
@@ -65,7 +67,9 @@ const AchievementCard = ({ achievementData }) => {
                         </Grid>
                         <Grid item>
                             <Tooltip arrow classes={useStylesBootstrap()} placement="top" title="Delete Achievement">
-                                <IconButton>
+                                <IconButton onClick={()=>{
+                                    deleteAchievement(achievementData[0].id);
+                                }}>
                                     <DeleteIcon className={classes.actionButtonIcon} />
                                 </IconButton>
                             </Tooltip>
@@ -79,7 +83,7 @@ const AchievementCard = ({ achievementData }) => {
                         </Grid>
                         <Grid item className={classes.descriptionContainer}>
                             <Typography variant="body2" paragraph className={classes.description}>
-                                {achievementData[0].description.length > 150 ? `${achievementData[0].description.slice(0, 150)}...` : achievementData[0].description}
+                                {achievementData[0].description && achievementData[0].description.length > 150 ? `${achievementData[0].description.slice(0, 150)}...` : achievementData[0].description && achievementData[0].description}
                             </Typography>
                         </Grid>
                         <Grid item>
@@ -99,4 +103,4 @@ const AchievementCard = ({ achievementData }) => {
     );
 };
 
-export default AchievementCard;
+export default connect(null,{deleteAchievement})(AchievementCard);
