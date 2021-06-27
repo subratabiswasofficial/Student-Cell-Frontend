@@ -17,6 +17,7 @@ import AuthModal from './components/landingpage/AuthModal';
 import Profile from './components/profile/Profile';
 import StudentSection from './components/studentSection/StudentSection';
 import Footer from './components/footer/Footer';
+import Alert from './components/layout/Alert';
 
 function App() {
     const [isInProfilePage, setIsInProfilePage] = useState(false);
@@ -30,15 +31,15 @@ function App() {
             setIsInProfilePage(false);
             setIsInHomePage(true);
         }else{
-            if(window.location.pathname === '/studentSection'){
+            if(window.location.pathname === '/student-section'){
                 setActiveSection(1);
-            }else if(window.location.pathname === '/clubSection'){
+            }else if(window.location.pathname === '/club-section'){
                 setActiveSection(2);
-            }else if(window.location.pathname === '/placementSection'){
+            }else if(window.location.pathname === '/placement-section'){
                 setActiveSection(3);
-            }else if(window.location.pathname === '/hostelSection'){
+            }else if(window.location.pathname === '/hostel-section'){
                 setActiveSection(4);
-            }else if(window.location.pathname === '/skillsSection'){
+            }else if(window.location.pathname === '/skills-section'){
                 setActiveSection(5);
             }
             setIsInProfilePage(false);
@@ -71,18 +72,15 @@ function App() {
                             <Route path="/signup" exact render={(props) => <div>Sign Up</div>} />
                             <PrivateRoute path="/profile/me" exact component={Profile} />
                             <PrivateRoute path="/dashboard" exact component={Dashboard} />
-                            <Route path="/studentSection" exact render={(props) => <StudentSection activeSection={activeSection}
-                            setActiveSection={setActiveSection} {...props} />} />
+                            <Route path="/student-section" exact render={(props) => <StudentSection activeSection={activeSection} setActiveSection={setActiveSection} {...props} />} />
                             <Route render={(props) => <div>404 Not Found</div>} />
                         </Switch>
-                        <Footer
-                          setIsInHomePage={setIsInHomePage}
-                          setIsInProfilePage={setIsInProfilePage}
-                          setActiveSection={setActiveSection}
-                        />
+                        <Footer setIsInHomePage={setIsInHomePage} setIsInProfilePage={setIsInProfilePage} setActiveSection={setActiveSection} />
                     </Router>
+                    <Alert />
                 </Provider>
                 <AuthModal activeTab={activeTab} setActiveTab={setActiveTab} setOpenAuthModal={setOpenAuthModal} openAuthModal={openAuthModal} />
+                
             </ThemeProvider>
         </>
     );

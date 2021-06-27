@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CommonNavigation = ({setActiveSection,activeSection}) => {
     const classes = useStyles();
+    
     return (
         <div>
             <Grid item container direction="row" justify="flex-end" className={classes.sectionContainer} alignItems="center">

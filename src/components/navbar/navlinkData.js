@@ -1,7 +1,7 @@
 const datas = [
     {
         id: 'student-menu',
-        to: 'studentSection',
+        to: 'student-section',
         navId: 1,
         links: [
             { link: 'ACHIEVEMENTS', desp: 'ACHIEVEMENTS desp', id: 'achivements' },
@@ -13,7 +13,7 @@ const datas = [
     },
     {
         id: 'club-menu',
-        to: 'clubSection',
+        to: 'club-section',
         navId: 2,
         links: [
             { link: 'CLUB ACTIVITIES', desp: 'CLUB ACTIVITIES desp', id: 'club-activities' },
@@ -23,7 +23,7 @@ const datas = [
     },
     {
         id: 'placement-menu',
-        to: 'placementSection',
+        to: 'placement-section',
         navId: 3,
         links: [
             { link: 'PLACEMENTS', desp: 'PLACEMENTS desp', id: 'placements' },
@@ -33,7 +33,7 @@ const datas = [
     },
     {
         id: 'hostel-menu',
-        to: 'hostelSection',
+        to: 'hostel-section',
         navId: 4,
         links: [
             { link: 'HOSTEL ENTRY', desp: 'HOSTEL ENTRY desp', id: 'hostel-entry' },
@@ -42,7 +42,7 @@ const datas = [
     },
     {
         id: 'skills-menu',
-        to: 'skillsSection',
+        to: 'skills-section',
         navId: 5,
         links: [
             { link: 'PROGRAMS', desp: 'PROGRAMS desp', id: 'programs' },

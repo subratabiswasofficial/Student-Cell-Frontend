@@ -1,5 +1,7 @@
 import { LOAD_ACHIEVEMENTS,DELETE_ACHIEVEMENT,ADD_ACHIEVEMENT } from "./types";
 import achievementData from '../components/studentSection/achievementData';
+import { setAlert } from './alert';
+
 
 
 // Load Achievements
@@ -20,6 +22,7 @@ export const addAchievement = (formData)=>{
             type: ADD_ACHIEVEMENT,
             playload: formData,
           });
+        dispatch(setAlert('Achievement Added!', 'Success'));
     }
 }
 
@@ -31,5 +34,6 @@ export const deleteAchievement = (id)=>{
             type: DELETE_ACHIEVEMENT,
             playload: id,
           });
+          dispatch(setAlert('Achievement Deleted!', 'danger'));
     }
 }

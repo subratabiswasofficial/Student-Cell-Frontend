@@ -52,6 +52,10 @@ const useStyles = makeStyles((theme) => ({
         color: '#fff',
         padding: '0.5em 1em',
         cursor: 'pointer'
+    },
+    imgItem: {
+        maxHeight: '10em',
+        overflow: 'hidden'
     }
 }));
 
@@ -67,9 +71,11 @@ const AchievementCard = ({ achievementData,deleteAchievement }) => {
                         </Grid>
                         <Grid item>
                             <Tooltip arrow classes={useStylesBootstrap()} placement="top" title="Delete Achievement">
-                                <IconButton onClick={()=>{
-                                    deleteAchievement(achievementData[0].id);
-                                }}>
+                                <IconButton
+                                    onClick={() => {
+                                        deleteAchievement(achievementData[0].id);
+                                    }}
+                                >
                                     <DeleteIcon className={classes.actionButtonIcon} />
                                 </IconButton>
                             </Tooltip>
@@ -83,10 +89,12 @@ const AchievementCard = ({ achievementData,deleteAchievement }) => {
                         </Grid>
                         <Grid item className={classes.descriptionContainer}>
                             <Typography variant="body2" paragraph className={classes.description}>
-                                {achievementData[0].description && achievementData[0].description.length > 150 ? `${achievementData[0].description.slice(0, 150)}...` : achievementData[0].description && achievementData[0].description}
+                                {achievementData[0].description && achievementData[0].description.length > 150
+                                    ? `${achievementData[0].description.slice(0, 150)}...`
+                                    : achievementData[0].description && achievementData[0].description}
                             </Typography>
                         </Grid>
-                        <Grid item>
+                        <Grid item className={classes.imgItem}>
                             <img className={classes.img} src={achievementData[0].imgSrc} alt="" />
                         </Grid>
                     </Grid>

@@ -1,8 +1,12 @@
 import { Grid, Typography, useMediaQuery, Paper,Hidden } from '@material-ui/core';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles, useTheme } from '@material-ui/styles';
 import Achievements from './Achievements';
 import CommonNavigation from './CommonNavigation';
+import Research from './Research';
+import Mardocuments from './Mardocuments';
+import Biling from './Biling';
+import {Link} from 'react-scroll';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -38,28 +42,31 @@ const useStyles = makeStyles((theme) => ({
         borderTopLeftRadius: 10,
         borderTopRightRadius: 10,
         [theme.breakpoints.down('sm')]: {
-            borderBottomRightRadius: 10,
-            borderBottomLeftRadius: 10
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+            width: '100%',
+            display:'flex',
+            justifyContent:'center'
         }
     },
     studentNavbarText: {
         fontFamily: 'Ubuntu, sans-serif',
         fontWeight: 500
     },
-    sectionItem:{
-         color:theme.palette.common.darkBlue,
-         padding:'1em',
-         marginLeft:'1em',
-         fontWeight:500,
-         fontFamily: 'Ubuntu, sans-serif',
-         cursor:'pointer'
+    sectionItem: {
+        color: theme.palette.common.darkBlue,
+        padding: '1em',
+        marginLeft: '1em',
+        fontWeight: 500,
+        fontFamily: 'Ubuntu, sans-serif',
+        cursor: 'pointer'
     },
-    sectionContainer:{
-        backgroundColor:'#fff'
+    sectionContainer: {
+        backgroundColor: '#fff'
     },
-    activeSectionItem:{
-        backgroundColor:'rgba(218, 216, 216, 1)',
-        borderTop:`3px solid ${theme.palette.common.orange}`
+    activeSectionItem: {
+        backgroundColor: 'rgba(218, 216, 216, 1)',
+        borderTop: `3px solid ${theme.palette.common.orange}`
     }
 }));
 
@@ -67,31 +74,58 @@ const Achivements = ({activeSection,setActiveSection}) => {
     const classes = useStyles();
     const theme = useTheme();
     const matchSm = useMediaQuery(theme.breakpoints.down('sm'));
+    const [elevation, setElevation] = useState(false);
+    const [activeStickyItem,setActiveStickyItem] = useState(1);
+
+    const changeElevation = () => {
+        // console.log(window.scrollY);
+        if (window.scrollY >= 170) {
+            setElevation(true);
+        } else {
+            setElevation(false);
+        }
+        if(window.scrollY < 1670){
+            setActiveStickyItem(1);
+        }else if(window.scrollY >= 1670 && window.scrollY < 2370){
+            setActiveStickyItem(2);
+        }else if(window.scrollY >= 2370 && window.scrollY < 3070){
+            setActiveStickyItem(3);
+        }else if(window.scrollY > 3170){
+            setActiveStickyItem(4);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', changeElevation);
+        return () => {
+            window.removeEventListener('scroll', changeElevation);
+        };
+    });
     return (
         <>
             <Grid container style={{}} className={classes.mainContainer} direction="column">
                 <Hidden smDown>
-                  <CommonNavigation activeSection={activeSection} setActiveSection={setActiveSection} />
+                      <CommonNavigation activeSection={activeSection} setActiveSection={setActiveSection}  />
                 </Hidden>
                 {/* Student Navbar Section */}
                 <Grid
                     item
                     container
                     component={Paper}
-                    elevation={0}
+                    elevation={elevation  ?  4  :  0}
                     square
                     direction={matchSm ? 'column' : 'row'}
                     justify={matchSm ? 'center' : 'space-around'}
                     className={classes.studentNavbarContainer}
                     alignItems="center"
                 >
-                    <Grid item className={`${classes.studentNavbarItem} ${classes.activeStudentNavbarItem}`}>
-                        <Typography variant="body1" className={classes.studentNavbarText}>
+                    <Grid item className={`${classes.studentNavbarItem} ${activeStickyItem === 1 && classes.activeStudentNavbarItem}`}>
+                        <Typography component={Link} to="achievements" smooth={true} duration={500} variant="body1" align="center" className={classes.studentNavbarText}>
                             ACHIEVEMENTS
                         </Typography>
                     </Grid>
-                    <Grid item className={classes.studentNavbarItem}>
-                        <Typography variant="body1" className={classes.studentNavbarText}>
+                    <Grid item className={`${classes.studentNavbarItem} ${activeStickyItem === 2 && classes.activeStudentNavbarItem}`}>
+                        <Typography component={Link} to="research" smooth={true} duration={500} variant="body1" align="center" className={classes.studentNavbarText}>
                             RESEARCH
                         </Typography>
                     </Grid>
@@ -100,13 +134,13 @@ const Achivements = ({activeSection,setActiveSection}) => {
                             SEMESTER
                         </Typography>
                     </Grid> */}
-                    <Grid item className={classes.studentNavbarItem}>
-                        <Typography variant="body1" className={classes.studentNavbarText}>
+                    <Grid item className={`${classes.studentNavbarItem} ${activeStickyItem === 3 && classes.activeStudentNavbarItem}`}>
+                        <Typography component={Link} to="mar-documents" smooth={true} duration={500} variant="body1" align="center" className={classes.studentNavbarText}>
                             MAR DOCUMENENTS
                         </Typography>
                     </Grid>
-                    <Grid item className={classes.studentNavbarItem}>
-                        <Typography variant="body1" className={classes.studentNavbarText}>
+                    <Grid item className={`${classes.studentNavbarItem} ${activeStickyItem === 4 && classes.activeStudentNavbarItem}`}>
+                        <Typography component={Link} to="biling" smooth={true} duration={500} variant="body1" align="center" className={classes.studentNavbarText}>
                             BILLING
                         </Typography>
                     </Grid>
@@ -118,6 +152,25 @@ const Achivements = ({activeSection,setActiveSection}) => {
                     <Achievements />
                 </Grid>
                 {/* Student Achievements Section */}
+
+                {/* Student Research Section */}
+                <Grid item>
+                     <Research />
+                </Grid>
+                {/* Student Research Section */}
+
+                {/* Student Mardocuments Section */}
+                <Grid item>
+                     <Mardocuments />
+                </Grid>
+                {/* Student Mardocuments Section */}
+
+                {/* Student Biling Section */}
+                <Grid item>
+                     <Biling />
+                </Grid>
+                {/* Student Biling Section */}
+
             </Grid>
         </>
     );

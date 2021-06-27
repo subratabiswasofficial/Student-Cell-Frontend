@@ -48,8 +48,7 @@ const useStyles = makeStyles((theme) => ({
     },
     inputContainer: {
         padding: '0.7em 1em 0.7em 1.5em',
-        marginBottom:'2em',
-        
+        marginBottom: '2em'
     },
     menuText: {
         fontFamily: 'Ubuntu, sans-serif',
@@ -91,7 +90,7 @@ const Achievements = ({studentSection:{achievements,loading},loadAchievement}) =
 
     return (
         <>
-            <Grid container direction="column" style={{ paddingTop: '4em' }} className={classes.achievementsMainContainer}>
+            <Grid container id="achievements" direction="column" style={{ paddingTop: '4em' }} className={classes.achievementsMainContainer}>
                 {/* Add Achivements and Filter Section */}
                 <Grid item container justify="center">
                     <Typography variant="body1" align="center" paragraph className={classes.header}>
@@ -157,30 +156,33 @@ const Achievements = ({studentSection:{achievements,loading},loadAchievement}) =
                 </Grid>
                 {/* Add Achivements and Filter Section End */}
 
-                {!loading && achievements? 
-                <>
-                <Grid item container justify={customMatchSm ? 'center' : 'space-between'} 
-                style={{
-                    //  height:'100vh',overflowY:'scroll', borderTop:`2px solid ${theme.palette.common.darkBlue}`,
-                    marginBottom:'10em'
-                }}
-                >
-                    {achievements.map((achievement, ind) => {
-                        return (
-                            <Grid item key={ind}>
-                                <AchievementCard achievementData={[achievement]} />
-                            </Grid>
-                        );
-                    })}
-                </Grid>
-                </>
-                :
-                <>
-                    <Grid item container style={{height:'30em'}} justify="center" alignItems="center">
-                      <CircularProgress />
-                    </Grid>
-                </>
-                }
+                {!loading && achievements ? (
+                    <>
+                        <Grid
+                            item
+                            container
+                            justify={customMatchSm ? 'center' : 'space-between'}
+                            style={{
+                                //  height:'100vh',overflowY:'scroll', borderTop:`2px solid ${theme.palette.common.darkBlue}`,
+                                marginBottom: '10em'
+                            }}
+                        >
+                            {achievements.map((achievement, ind) => {
+                                return (
+                                    <Grid item key={ind}>
+                                        <AchievementCard achievementData={[achievement]} />
+                                    </Grid>
+                                );
+                            })}
+                        </Grid>
+                    </>
+                ) : (
+                    <>
+                        <Grid item container style={{ height: '30em' }} justify="center" alignItems="center">
+                            <CircularProgress />
+                        </Grid>
+                    </>
+                )}
             </Grid>
             <AddAchievementModal setAddAchievementModal={setAddAchievementModal} addAchievementModalOpen={addAchievementModalOpen} />
         </>
