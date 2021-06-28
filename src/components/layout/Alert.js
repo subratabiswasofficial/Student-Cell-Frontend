@@ -1,32 +1,18 @@
 import React from 'react';
-import Snackbar from '@material-ui/core/Snackbar';
 import { connect } from 'react-redux';
-import { useTheme } from '@material-ui/styles';
+import { useSnackbar } from 'notistack';
 
 const Alert = ({ alerts }) => {
-    const theme = useTheme();
-    return (
-        <>
-            {alerts &&
-                alerts.length > 0 &&
-                alerts.map((alert) => (
-                    <Snackbar
-                        key={alert.id}
-                        open={alert.open}
-                        message={alert.msg}
-                        ContentProps={{
-                            style: {
-                                backgroundColor: alert.backgroundColor === 'Success' ? theme.palette.success.main : theme.palette.error.main,
-                                display: 'flex',
-                                justifyContent: 'center'
-                            }
-                        }}
-                        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-                        autoHideDuration={4000}
-                    />
-                ))}
-        </>
-    );
+    const { enqueueSnackbar } = useSnackbar();
+    const showSnack = (msg,  variant)  =>  {
+        enqueueSnackbar(msg, { variant: variant, autoHideDuration: 3000 });
+    };
+    return <>
+      {alerts && alerts.length > 0 && alerts.map((alert) => {
+        const {msg,variant} = alert;
+        return showSnack(msg,variant)
+      })}
+    </>;
 };
 
 const mapStateToProps = (state) => {

@@ -22,7 +22,7 @@ export const addAchievement = (formData)=>{
             type: ADD_ACHIEVEMENT,
             playload: formData,
           });
-        dispatch(setAlert('Achievement Added!', 'Success'));
+        dispatch(setAlert('Achievement Added!', 'success'));
     }
 }
 
@@ -34,6 +34,6 @@ export const deleteAchievement = (id)=>{
             type: DELETE_ACHIEVEMENT,
             playload: id,
           });
-          dispatch(setAlert('Achievement Deleted!', 'danger'));
+          dispatch(setAlert('Achievement Deleted!', 'success'));
     }
 }

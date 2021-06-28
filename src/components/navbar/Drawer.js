@@ -109,7 +109,17 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         <Grid container direction="column">
                                             {linkdatas[0].links.map((linkName) => {
                                                 return (
-                                                    <Grid item key={linkName.link}>
+                                                    <Grid
+                                                        component={Link}
+                                                        to={`/${linkdatas[0].to}`}
+                                                        item
+                                                        key={linkName.link}
+                                                        onClick={() => {
+                                                            setIsInHomePage(false);
+                                                            setIsInProfilePage(false);
+                                                            setOpenDrawer(false);
+                                                        }}
+                                                    >
                                                         <Typography variant="body2" className={classes.link}>
                                                             {linkName.link}
                                                         </Typography>
@@ -150,7 +160,17 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         <Grid container direction="column">
                                             {linkdatas[1].links.map((linkName) => {
                                                 return (
-                                                    <Grid item key={linkName.link}>
+                                                    <Grid
+                                                        component={Link}
+                                                        to={`/${linkdatas[1].to}`}
+                                                        item
+                                                        key={linkName.link}
+                                                        onClick={() => {
+                                                            setIsInHomePage(false);
+                                                            setIsInProfilePage(false);
+                                                            setOpenDrawer(false);
+                                                        }}
+                                                    >
                                                         <Typography variant="body2" className={classes.link}>
                                                             {linkName.link}
                                                         </Typography>
@@ -191,7 +211,17 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         <Grid container direction="column">
                                             {linkdatas[2].links.map((linkName) => {
                                                 return (
-                                                    <Grid item key={linkName.link}>
+                                                    <Grid
+                                                        component={Link}
+                                                        to={`/${linkdatas[2].to}`}
+                                                        item
+                                                        key={linkName.link}
+                                                        onClick={() => {
+                                                            setIsInHomePage(false);
+                                                            setIsInProfilePage(false);
+                                                            setOpenDrawer(false);
+                                                        }}
+                                                    >
                                                         <Typography variant="body2" className={classes.link}>
                                                             {linkName.link}
                                                         </Typography>
@@ -232,7 +262,17 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         <Grid container direction="column">
                                             {linkdatas[3].links.map((linkName) => {
                                                 return (
-                                                    <Grid item key={linkName.link}>
+                                                    <Grid
+                                                        component={Link}
+                                                        to={`/${linkdatas[3].to}`}
+                                                        item
+                                                        key={linkName.link}
+                                                        onClick={() => {
+                                                            setIsInHomePage(false);
+                                                            setIsInProfilePage(false);
+                                                            setOpenDrawer(false);
+                                                        }}
+                                                    >
                                                         <Typography variant="body2" className={classes.link}>
                                                             {linkName.link}
                                                         </Typography>
@@ -273,7 +313,17 @@ const Drawer = ({ openDrawer, setOpenDrawer, auth: { isAuthenticated, loading },
                                         <Grid container direction="column">
                                             {linkdatas[4].links.map((linkName) => {
                                                 return (
-                                                    <Grid item key={linkName.link}>
+                                                    <Grid
+                                                        component={Link}
+                                                        to={`/${linkdatas[4].to}`}
+                                                        item
+                                                        key={linkName.link}
+                                                        onClick={() => {
+                                                            setIsInHomePage(false);
+                                                            setIsInProfilePage(false);
+                                                            setOpenDrawer(false);
+                                                        }}
+                                                    >
                                                         <Typography variant="body2" className={classes.link}>
                                                             {linkName.link}
                                                         </Typography>

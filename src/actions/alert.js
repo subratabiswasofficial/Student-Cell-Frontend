@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { SET_ALERT, REMOVE_ALERT } from '../actions/types';
 
-export const setAlert = (msg, backgroundColor) => {
+export const setAlert = (msg, variant) => {
     return (dispatch) => {
         const id = uuidv4();
         dispatch({
@@ -9,8 +9,7 @@ export const setAlert = (msg, backgroundColor) => {
             playload: {
                 id,
                 msg,
-                backgroundColor,
-                open: true
+                variant
             }
         });
 
@@ -19,6 +18,6 @@ export const setAlert = (msg, backgroundColor) => {
                 type: REMOVE_ALERT,
                 playload: id
             });
-        }, 5000);
+        }, 100);
     };
 };

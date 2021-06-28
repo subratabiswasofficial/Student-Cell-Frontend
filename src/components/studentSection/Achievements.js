@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Grid, Select, MenuItem, Paper, InputBase, InputAdornment, IconButton, Divider, useMediaQuery } from '@material-ui/core';
+import { Grid, Select, MenuItem, Paper, InputBase, InputAdornment, IconButton, Divider, useMediaQuery,Button } from '@material-ui/core';
 import React, { useState,useEffect } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import AddIcon from '@material-ui/icons/Add';
@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             paddingLeft: '0em',
             paddingRight: '0em'
-        }
+        },
+        scrollSnapAlign:'start'
     },
     actionButton: {
         padding: '0.8em 1em',
@@ -66,10 +67,16 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Ubuntu, sans-serif',
         fontWeight: 600,
         marginBottom: '3em'
+    },
+    viewMore:{
+        backgroundColor:theme.palette.common.orange,
+        color:'#fff',
+        padding:'0.5em',
+        "&:hover":{
+            backgroundColor:theme.palette.common.orange,
+        }
     }
-    // achievementItem: {
-    //     width: '30%',
-    // }
+    
 }));
 
 const Achievements = ({studentSection:{achievements,loading},loadAchievement}) => {
@@ -83,6 +90,10 @@ const Achievements = ({studentSection:{achievements,loading},loadAchievement}) =
     };
 
     const customMatchSm = useMediaQuery('(max-width:850px)');
+
+    
+
+
 
     useEffect(()=>{
        loadAchievement();
@@ -161,20 +172,37 @@ const Achievements = ({studentSection:{achievements,loading},loadAchievement}) =
                         <Grid
                             item
                             container
-                            justify={customMatchSm ? 'center' : 'space-between'}
+                            justify={customMatchSm ? 'center' : 'space-evenly'}
                             style={{
-                                //  height:'100vh',overflowY:'scroll', borderTop:`2px solid ${theme.palette.common.darkBlue}`,
-                                marginBottom: '10em'
+                                marginBottom: '5em'
                             }}
                         >
-                            {achievements.map((achievement, ind) => {
-                                return (
-                                    <Grid item key={ind}>
-                                        <AchievementCard achievementData={[achievement]} />
-                                    </Grid>
-                                );
-                            })}
+                            {achievements.length > 6
+                                ?
+                                achievements.slice(0,6).map((achievement, ind) => {
+                                      return (
+                                          <Grid item key={ind}>
+                                              <AchievementCard achievementData={[achievement]} />
+                                          </Grid>
+                                      );
+                                  })
+                                : achievements.map((achievement, ind) => {
+                                      return (
+                                          <Grid item key={ind}>
+                                              <AchievementCard achievementData={[achievement]} />
+                                          </Grid>
+                                      );
+                                  })}
                         </Grid>
+                        {!loading && achievements && achievements.length > 6 &&
+                        
+                          <Grid item container justify="center" 
+                          style={{
+                                marginBottom: '10em'
+                            }}>
+                              <Button className={classes.viewMore}>View More</Button>
+                          </Grid>
+                        }
                     </>
                 ) : (
                     <>

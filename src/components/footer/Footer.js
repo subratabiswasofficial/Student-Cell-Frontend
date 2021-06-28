@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import { Grid,Typography } from '@material-ui/core';
+import { Grid,Typography,Hidden } from '@material-ui/core';
 import collegeLogo from '../../assets/collegeLogo.png';
 import navData from '../navbar/navlinkData';
 import {Link} from 'react-router-dom';
@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: "Arial",
         fontWeight: "bold",
         textDecoration: "none",
+        "&:hover":{
+            color:theme.palette.common.orange,
+            textDecoration: "underline",
+        }
     },
     gridItem: {
         margin: "2rem",
@@ -40,7 +44,7 @@ const Footer = ({setIsInProfilePage,setIsInHomePage,setActiveSection}) => {
     return (
         <>
             <footer className={classes.footer}>
-                <Grid container direction="row" alignItems="center">
+                <Grid container direction="row" alignItems="center" justify="center">
                     <Grid item>
                         <Grid container direction="column" alignItems="center">
                             <Grid item style={{marginBottom:'1em'}}>
@@ -53,6 +57,7 @@ const Footer = ({setIsInProfilePage,setIsInHomePage,setActiveSection}) => {
                             </Grid>
                         </Grid>
                     </Grid>
+                    <Hidden smDown>
                     <Grid item>
                         <Grid container direction="row">
 
@@ -148,6 +153,7 @@ const Footer = ({setIsInProfilePage,setIsInHomePage,setActiveSection}) => {
 
                         </Grid>
                     </Grid>
+                    </Hidden>
                 </Grid>
             </footer>
         </>
