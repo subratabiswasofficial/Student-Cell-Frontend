@@ -6,8 +6,6 @@ import CommonNavigation from '../layout/CommonNavigation';
 import Research from './Research';
 import Mardocuments from './Mardocuments';
 import Biling from './Biling';
-import {Link} from 'react-scroll';
-
 
 const useStyles = makeStyles((theme) => ({
     mainContainer: {
@@ -20,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             paddingTop: '4.9em'
         },
-        scrollSnapType:'mandatory'
+        scrollSnapType: 'mandatory'
     },
     studentNavbarContainer: {
         backgroundColor: theme.palette.common.darkBlue,
@@ -30,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
         top: '-1px',
         zIndex: 303,
         [theme.breakpoints.down('sm')]: {
-            position: 'static'
+            position: 'static',
+            paddingBottom: '0.5em'
         }
     },
     studentNavbarItem: {
@@ -46,8 +45,8 @@ const useStyles = makeStyles((theme) => ({
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,
             width: '100%',
-            display:'flex',
-            justifyContent:'center'
+            display: 'flex',
+            justifyContent: 'center'
         }
     },
     studentNavbarText: {
@@ -71,12 +70,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Achivements = ({activeSection,setActiveSection}) => {
+const Achivements = ({ activeSection, setActiveSection }) => {
     const classes = useStyles();
     const theme = useTheme();
     const matchSm = useMediaQuery(theme.breakpoints.down('sm'));
     const [elevation, setElevation] = useState(false);
-    const [activeStickyItem,setActiveStickyItem] = useState(1);
+    const [activeStickyItem, setActiveStickyItem] = useState(1);
 
     const changeElevation = () => {
         // console.log(window.scrollY);
@@ -84,15 +83,6 @@ const Achivements = ({activeSection,setActiveSection}) => {
             setElevation(true);
         } else {
             setElevation(false);
-        }
-        if (window.scrollY < 1470) {
-            setActiveStickyItem(1);
-        } else if (window.scrollY >= 1470 && window.scrollY < 2170) {
-            setActiveStickyItem(2);
-        } else if (window.scrollY >= 2170 && window.scrollY < 2870) {
-            setActiveStickyItem(3);
-        } else if (window.scrollY >= 2870) {
-            setActiveStickyItem(4);
         }
     };
 
@@ -120,13 +110,25 @@ const Achivements = ({activeSection,setActiveSection}) => {
                     className={classes.studentNavbarContainer}
                     alignItems="center"
                 >
-                    <Grid item component={Link} to="achievements" smooth={true} duration={500} className={`${classes.studentNavbarItem} ${activeStickyItem === 1 && classes.activeStudentNavbarItem}`}>
+                    <Grid
+                        item
+                        onClick={() => {
+                            setActiveStickyItem(1);
+                        }}
+                        className={`${classes.studentNavbarItem} ${activeStickyItem === 1 && classes.activeStudentNavbarItem}`}
+                    >
                         <Typography variant="body1" align="center" className={classes.studentNavbarText}>
                             ACHIEVEMENTS
                         </Typography>
                     </Grid>
-                    <Grid item component={Link} to="research" smooth={true} duration={500} className={`${classes.studentNavbarItem} ${activeStickyItem === 2 && classes.activeStudentNavbarItem}`}>
-                        <Typography  variant="body1" align="center" className={classes.studentNavbarText}>
+                    <Grid
+                        item
+                        onClick={() => {
+                            setActiveStickyItem(2);
+                        }}
+                        className={`${classes.studentNavbarItem} ${activeStickyItem === 2 && classes.activeStudentNavbarItem}`}
+                    >
+                        <Typography variant="body1" align="center" className={classes.studentNavbarText}>
                             RESEARCH
                         </Typography>
                     </Grid>
@@ -135,13 +137,25 @@ const Achivements = ({activeSection,setActiveSection}) => {
                             SEMESTER
                         </Typography>
                     </Grid> */}
-                    <Grid item component={Link} to="mar-documents" smooth={true} duration={500} className={`${classes.studentNavbarItem} ${activeStickyItem === 3 && classes.activeStudentNavbarItem}`}>
-                        <Typography  variant="body1" align="center" className={classes.studentNavbarText}>
+                    <Grid
+                        item
+                        onClick={() => {
+                            setActiveStickyItem(3);
+                        }}
+                        className={`${classes.studentNavbarItem} ${activeStickyItem === 3 && classes.activeStudentNavbarItem}`}
+                    >
+                        <Typography variant="body1" align="center" className={classes.studentNavbarText}>
                             MAR DOCUMENENTS
                         </Typography>
                     </Grid>
-                    <Grid item component={Link} to="biling" smooth={true} duration={500} className={`${classes.studentNavbarItem} ${activeStickyItem === 4 && classes.activeStudentNavbarItem}`}>
-                        <Typography  variant="body1" align="center" className={classes.studentNavbarText}>
+                    <Grid
+                        item
+                        onClick={() => {
+                            setActiveStickyItem(4);
+                        }}
+                        className={`${classes.studentNavbarItem} ${activeStickyItem === 4 && classes.activeStudentNavbarItem}`}
+                    >
+                        <Typography variant="body1" align="center" className={classes.studentNavbarText}>
                             BILLING
                         </Typography>
                     </Grid>
@@ -149,27 +163,35 @@ const Achivements = ({activeSection,setActiveSection}) => {
                 {/* Student Navbar Section End */}
 
                 {/* Student Achievements Section */}
-                <Grid item>
-                    <Achievements />
-                </Grid>
+                {activeStickyItem === 1 && (
+                    <Grid item>
+                        <Achievements />
+                    </Grid>
+                )}
                 {/* Student Achievements Section */}
 
                 {/* Student Research Section */}
-                <Grid item>
-                    <Research />
-                </Grid>
+                {activeStickyItem === 2 && (
+                    <Grid item>
+                        <Research />
+                    </Grid>
+                )}
                 {/* Student Research Section */}
 
                 {/* Student Mardocuments Section */}
-                <Grid item>
-                    <Mardocuments />
-                </Grid>
+                {activeStickyItem === 3 && (
+                    <Grid item>
+                        <Mardocuments />
+                    </Grid>
+                )}
                 {/* Student Mardocuments Section */}
 
                 {/* Student Biling Section */}
-                <Grid item>
-                    <Biling />
-                </Grid>
+                {activeStickyItem === 4 && (
+                    <Grid item>
+                        <Biling />
+                    </Grid>
+                )}
                 {/* Student Biling Section */}
             </Grid>
         </>

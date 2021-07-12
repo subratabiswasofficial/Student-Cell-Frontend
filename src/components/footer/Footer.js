@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Grid,Typography,Hidden } from '@material-ui/core';
 import collegeLogo from '../../assets/collegeLogo.png';
 import navData from '../navbar/navlinkData';
-import {Link} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     
@@ -31,7 +31,11 @@ const useStyles = makeStyles((theme) => ({
         "&:hover":{
             color:theme.palette.common.orange,
             textDecoration: "underline",
-        }
+            // transform:'translateX(5px)',
+            // transition:'all 0.3s'
+        },
+        cursor:'pointer',
+        
     },
     gridItem: {
         margin: "2rem",
@@ -39,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Footer = ({setIsInProfilePage,setIsInHomePage,setActiveSection}) => {
+const Footer = ({ setIsInProfilePage, setIsInHomePage, setActiveSection, history }) => {
     const classes = useStyles();
     return (
         <>
@@ -47,117 +51,135 @@ const Footer = ({setIsInProfilePage,setIsInHomePage,setActiveSection}) => {
                 <Grid container direction="row" alignItems="center" justify="center">
                     <Grid item>
                         <Grid container direction="column" alignItems="center">
-                            <Grid item style={{marginBottom:'1em'}}>
-                                 <img className={classes.logo} alt="" src={collegeLogo} />
+                            <Grid item style={{ marginBottom: '1em' }}>
+                                <img className={classes.logo} alt="" src={collegeLogo} />
                             </Grid>
                             <Grid item>
                                 <Typography variant="h4" className={classes.copyrights}>
-                                 © 2021 JGEC, ALL RIGHTS RESERVED
+                                    © 2021 JGEC, ALL RIGHTS RESERVED
                                 </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
                     <Hidden smDown>
-                    <Grid item>
-                        <Grid container direction="row">
+                        <Grid item>
+                            <Grid container direction="row">
+                                <Grid item className={classes.gridItem}>
+                                    <Grid container direction="column" spacing={2}>
+                                        {navData[0].links.map((link) => {
+                                            return  (
+                                                <Grid
+                                                className={classes.gridLink}
+                                                key={link.link}
+                                                item
+                                                onClick={()  =>  {
+                                                    setIsInHomePage(false);
+                                                    setIsInProfilePage(false);
+                                                    setActiveSection(1);
+                                                    history.push(`/${navData[0].to}`);
+                                                }}
+                                                >
+                                                   {link.link}
+                                                </Grid>
+                                            );
+                                        })}
+                                    </Grid>
+                                </Grid>
 
-                            <Grid item className={classes.gridItem}>
-                                <Grid container direction="column" spacing={2}>
-                                    {navData[0].links.map(link=>{
-                                        return(
-                                            <Grid component={Link} to={`/${navData[0].to}`} className={classes.gridLink} key={link.link} item
-                                            onClick={()=>{
-                                                setIsInHomePage(false);
-                                                setIsInHomePage(false);
-                                                setActiveSection(1);
-                                            }}
-                                            >
-                                                 {link.link}
-                                            </Grid>
-                                        )
-                                    })}
+                                <Grid item className={classes.gridItem}>
+                                    <Grid container direction="column" spacing={2}>
+                                        {navData[1].links.map((link) => {
+                                            return (
+                                                <Grid
+                                                    className={classes.gridLink}
+                                                    key={link.link}
+                                                    item
+                                                    onClick={() => {
+                                                        setIsInHomePage(false);
+                                                        setIsInProfilePage(false);
+                                                        setActiveSection(2);
+                                                        history.push(`/${navData[1].to}`);
+                                                    }}
+                                                >
+                                                    {link.link}
+                                                </Grid>
+                                            );
+                                        })}
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item className={classes.gridItem}>
+                                    <Grid container direction="column" spacing={2}>
+                                        {navData[2].links.map((link) => {
+                                            return (
+                                                <Grid
+                                                    className={classes.gridLink}
+                                                    key={link.link}
+                                                    item
+                                                    onClick={() => {
+                                                        setIsInHomePage(false);
+                                                        setIsInProfilePage(false);
+                                                        setActiveSection(3);
+                                                        history.push(`/${navData[2].to}`);
+                                                    }}
+                                                >
+                                                    {link.link}
+                                                </Grid>
+                                            );
+                                        })}
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item className={classes.gridItem}>
+                                    <Grid container direction="column" spacing={2}>
+                                        {navData[3].links.map((link) => {
+                                            return (
+                                                <Grid
+                                                    className={classes.gridLink}
+                                                    key={link.link}
+                                                    item
+                                                    onClick={() => {
+                                                        setIsInHomePage(false);
+                                                        setIsInProfilePage(false);
+                                                        setActiveSection(4);
+                                                        history.push(`/${navData[3].to}`);
+                                                    }}
+                                                >
+                                                    {link.link}
+                                                </Grid>
+                                            );
+                                        })}
+                                    </Grid>
+                                </Grid>
+
+                                <Grid item className={classes.gridItem}>
+                                    <Grid container direction="column" spacing={2}>
+                                        {navData[4].links.map((link) => {
+                                            return (
+                                                <Grid
+                                                    className={classes.gridLink}
+                                                    key={link.link}
+                                                    item
+                                                    onClick={() => {
+                                                        setIsInHomePage(false);
+                                                        setIsInProfilePage(false);
+                                                        setActiveSection(5);
+                                                        history.push(`/${navData[4].to}`);
+                                                    }}
+                                                >
+                                                    {link.link}
+                                                </Grid>
+                                            );
+                                        })}
+                                    </Grid>
                                 </Grid>
                             </Grid>
-
-                            <Grid item className={classes.gridItem}> 
-                            <Grid container direction="column" spacing={2}>
-                                    {navData[1].links.map(link=>{
-                                        return(
-                                            <Grid component={Link} to={`/${navData[1].to}`} className={classes.gridLink} key={link.link} item
-                                            onClick={()=>{
-                                                setIsInHomePage(false);
-                                                setIsInHomePage(false);
-                                                setActiveSection(2);
-                                            }}
-                                            >
-                                                 {link.link}
-                                            </Grid>
-                                        )
-                                    })}
-                            </Grid>
-                            </Grid>
-
-                            <Grid item className={classes.gridItem}>
-                            <Grid container direction="column" spacing={2}>
-                                    {navData[2].links.map(link=>{
-                                        return(
-                                            <Grid component={Link} to={`/${navData[2].to}`} className={classes.gridLink} key={link.link} item
-                                           onClick={()=>{
-                                                setIsInHomePage(false);
-                                                setIsInHomePage(false);
-                                                setActiveSection(3);
-                                            }}
-                                            >
-                                                 {link.link}
-                                            </Grid>
-                                        )
-                                    })}
-                                </Grid>
-                            </Grid>
-
-                            <Grid item className={classes.gridItem}>
-                            <Grid container direction="column" spacing={2}>
-                                    {navData[3].links.map(link=>{
-                                        return(
-                                            <Grid component={Link} to={`/${navData[3].to}`} className={classes.gridLink} key={link.link} item
-                                            onClick={()=>{
-                                                setIsInHomePage(false);
-                                                setIsInHomePage(false);
-                                                setActiveSection(4);
-                                            }}
-                                            >
-                                                 {link.link}
-                                            </Grid>
-                                        )
-                                    })}
-                                </Grid>
-                            </Grid>
-
-                            <Grid item className={classes.gridItem}>
-                            <Grid container direction="column" spacing={2}>
-                                    {navData[4].links.map(link=>{
-                                        return(
-                                            <Grid component={Link} to={`/${navData[4].to}`} className={classes.gridLink} key={link.link} item
-                                            onClick={()=>{
-                                                setIsInHomePage(false);
-                                                setIsInHomePage(false);
-                                                setActiveSection(5);
-                                            }}
-                                            >
-                                                 {link.link}
-                                            </Grid>
-                                        )
-                                    })}
-                                </Grid>
-                            </Grid>
-
                         </Grid>
-                    </Grid>
                     </Hidden>
                 </Grid>
             </footer>
         </>
-    )
-}
+    );
+};
 
-export default Footer;
+export default withRouter(Footer);

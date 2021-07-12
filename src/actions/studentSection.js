@@ -26,7 +26,7 @@ export const addAchievement = (formData)=>{
     }
 }
 
-//Add Achievement
+//Delete Achievement
 
 export const deleteAchievement = (id)=>{
     return async (dispatch)=>{
