@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Paper, Typography, Button, IconButton } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import DeleteIcon from '@material-ui/icons/Delete';
+import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '3em',
         fontFamily: 'Ubuntu, sans-serif',
         fontWeight: 400
+    },
+    iconStar: {
+        color: theme.palette.common.orange
     }
 }));
 
@@ -44,7 +47,7 @@ const ResearchCard = ({ title, name }) => {
                     </Grid>
                     <Grid item>
                         <IconButton>
-                            <DeleteIcon />
+                            <StarOutlineIcon className={classes.iconStar} />
                         </IconButton>
                     </Grid>
                 </Grid>

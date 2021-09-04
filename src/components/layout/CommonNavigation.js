@@ -7,20 +7,20 @@ import {Link} from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
-    sectionItem:{
-         color:theme.palette.common.darkBlue,
-         padding:'0.8em 1em',
-         marginLeft:'1em',
-         fontWeight:500,
-         fontFamily: 'Ubuntu, sans-serif',
-         cursor:'pointer'
+    sectionItem: {
+        color: theme.palette.common.darkBlue,
+        padding: '0.8em 1em',
+        marginLeft: '1em',
+        fontWeight: 500,
+        fontFamily: 'Ubuntu, sans-serif',
+        cursor: 'pointer'
     },
-    sectionContainer:{
-        backgroundColor:'#fff'
+    sectionContainer: {
+        backgroundColor: '#fff'
     },
-    activeSectionItem:{
-        backgroundColor:'rgba(218, 216, 216, 1)',
-        borderTop:`3px solid ${theme.palette.common.orange}`
+    activeSectionItem: {
+        backgroundColor: 'rgba(218, 216, 216, 1)',
+        borderTop: `3px solid ${theme.palette.common.orange}`
     }
 }));
 
